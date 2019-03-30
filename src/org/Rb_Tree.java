@@ -94,7 +94,7 @@ public class Rb_Tree {
       *      px                             px
       *     /                              /
       *    x                              y
-      *   / \       --(左旋)-.           / \                #
+      *   / \       --(左旋)--           / \                #
       *  lx  y                         x  ry
       *     / \                       / \
       *    ly ry                     lx ly
@@ -157,7 +157,6 @@ public class Rb_Tree {
       *      lx rx                                rx ry
       *
       */
-
     public void  rightRotate(Rb_Node y){
         // 设置x是当前节点的左孩子。
         Rb_Node x=y.lchild;
@@ -194,7 +193,6 @@ public class Rb_Tree {
 
 
     private void insert(Rb_Node node){
-        int cmp;
         Rb_Node y=null;
         Rb_Node x=this.mRoot;
 
@@ -269,13 +267,13 @@ public class Rb_Tree {
                 }
                 setBlack(parent);
                 setRed(gparent);
-                leftRotate(gparent);
+                rightRotate(gparent);
 
             }
             //若“父节点”是“祖父节点的右孩子”
             else {
                 // Case 1条件：叔叔节点是红色
-                Rb_Node uncle=gparent.rchild;
+                Rb_Node uncle=gparent.lchild;
                 if ((uncle!=null) && isRed(uncle)) {
                     setBlack(uncle);
                     setBlack(parent);
